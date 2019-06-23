@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test NongoDB Connection</title>
+        <style>
+            body 
+            {
+                padding: 50px;
+                font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+            }
+
+            a 
+            {
+                color: #00B7FF;
+            }
+
+            section 
+            {
+                float: left;
+                background: #bdc3c7;
+                padding: 10px;
+                margin: 30px;
+                width: 243px;
+                box-shadow: 3px 3px 1px #34495e;
+                min-height: 400px;
+            }
+
+            section:first-of-type 
+            {
+                margin-left: 0;
+            }
+
+            section:last-of-type 
+            {
+                margin-right: 0;
+            }
+
+            section h3 
+            {
+                border-bottom: 1px solid black;
+                padding-bottom: 5px;
+            }
+
+            .insert 
+            {
+                background: #2ecc71;
+            }
+
+            .get 
+            {
+                background: #ecf0f1;
+            }
+
+            .update
+            {
+                background: #3498db;
+            }
+
+            .delete 
+            {
+                background: #e74c3c;
+            }
+
+            .input label 
+            {
+                display: block;
+                font-weight: bold;
+                padding: 2px 0;
+            }
+
+            input, button 
+            {
+                font: inherit;
+            }
+
+            button 
+            {
+                margin-top: 10px;
+                border: none;
+                box-shadow: 1px 1px 1px #34495e;
+                border-radius: 0;
+                background: #ecf0f1;
+                cursor: pointer;
+            }
+
+            button:hover 
+            {
+                background: #bdc3c7;
+            }
+
+            .item 
+            {
+                margin: 10px 0;
+                padding: 5px;
+                background: #95a5a6;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <section class = "insert" >
+            <form action = "http://127.0.0.1:9999/insert", method = "POST">
+                <h1>Insert Test</h1><br><br>
+                Title<br>
+                <input type = "text", name = "t" ><br><br>
+                Content<br>
+                <input type = "text", name = "c" ><br><br>
+                Author<br>
+                <input type = "text", name = "a" ><br><br>
+                <input type = "submit", value = "Submit" ><br><br>
+            </form>
+        </section>
+        <section class = "get" >
+            <h1>View Test</h1><br><br>
+            <a href="http://127.0.0.1:9999/get-data">LOAD DATA</a>
+            <div>
+                <article class="item">
+                    <div>Title:  <%= (typeof itemww != "undefined" ? itemww : "") %> </div>
+                    <div>Content: <%= (typeof itemwww != "undefined" ? itemwww : "") %> </div>
+                    <div>Author: <%= (typeof itemwwww != "undefined" ? itemwwww : "") %> </div>
+                    <div>ID: <%= (typeof itemw != "undefined" ? itemw : "") %></div>
+                </article>
+            </div>
+        </section>
+        <section class = "update" >
+            <form action = "http://127.0.0.1:9999/update", method = "POST">
+                <h1>Update Test</h1><br><br>
+                ID<br>
+                <input type = "text", name = "ia" ><br><br>
+                Title<br>
+                <input type = "text", name = "ta" ><br><br>
+                Content<br>
+                <input type = "text", name = "ca" ><br><br>
+                Author<br>
+                <input type = "text", name = "aa" ><br><br>
+                <input type = "submit", value = "Submit" ><br><br>
+            </form>
+        </section>
+        <section class = "delete" >
+            <form action = "http://127.0.0.1:9999/delete", method = "POST">
+                <h1>Delete Test</h1><br><br>
+                ID<br>
+                <input type = "text", name = "iaa" ><br><br>
+                <input type = "submit", value = "Submit" ><br><br>
+            </form>
+        </section>
+    </body>
+</html>
