@@ -34,16 +34,16 @@ while Connected != True:
 try:
     tl = Timeloop()
 
-    @tl.job(interval=timedelta(seconds=1))
+    @tl.job(interval=timedelta(seconds=5))
     def sample_job_every_10s():
         temp = random.uniform(15,30)
         humidity = random.uniform(20,50)
         pressure = random.uniform(1.0,1.2)
         val_list = [temp, humidity, pressure]
-        print(val_list)
-        client.publish("python/test",temp)
-        client.publish("python/test",humidity)
-        client.publish("python/test",pressure)
+        print("Published Value : ", val_list)
+        client.publish("python/temp",temp)
+        client.publish("python/humid",humidity)
+        client.publish("python/press",pressure)
         
     tl.start(block=True)
  
