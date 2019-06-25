@@ -9,6 +9,14 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost:27017/logincred')
+
+var cors = require('cors');
+app.use(cors({
+  origin:'http://localhost:4200'
+}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
