@@ -1,0 +1,65 @@
+<div class="formcontainer">
+    <div class="formbody">
+        <form style="width:100%;" [formGroup]="myForm">
+            <div class="header">
+                Register
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input type="text" formControlName="fname" matInput placeholder="First Name" id="fname">    
+                    <span *ngIf="isValid('fname')">First Name is required</span>
+                    <mat-icon matPrefix>person</mat-icon>
+                    <mat-hint *ngIf="isTouched('fname')">Enter your First Name</mat-hint>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" formControlName="lname" matInput placeholder="Last Name" id="lname">
+                    <span *ngIf="isValid('lname')">Last Name is required</span>
+                    <mat-icon matPrefix>person_outline</mat-icon>
+                    <mat-hint>Enter your Last Name</mat-hint>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input type="text" formControlName="uname"  matInput placeholder="Username" id="uname">
+                    <span *ngIf="isValid('uname')">Username is entered is invalid</span>
+                    <mat-icon matPrefix>person_pin</mat-icon>
+                    <mat-hint>Enter a unique username</mat-hint>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" formControlName="password" matInput placeholder="Password" id="password">
+                    <span *ngIf="isValid('password')">Password is a mandatory field</span>
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <mat-hint>Enter a password</mat-hint>
+                </mat-form-field>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Repeat Password</mat-label>
+                    <input type="password" formControlName="cnfpass" matInput placeholder="Re-enter Password" id="cnfpass">
+                    <span *ngIf="isValid('cnfpass')">Password and confirm password should match</span>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <mat-hint>Repeat the entered password</mat-hint>
+                </mat-form-field>
+            </div>
+            <div style="margin-top:20px;">
+                <button class="form-btn">Register</button>
+            </div>
+        
+    </div>
+
+    <div>
+        <div style="width: 290px; padding: 20px;">
+            <button class="form-btn-hollow">Login</button>
+        
+    </div>
+</div>
+</form>
+</div>
+</div>
