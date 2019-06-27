@@ -11,11 +11,14 @@ export class RegisterComponent implements OnInit {
 
   myForm: FormGroup;
   successMessage: String = '';
+  submitted = false;
 
   constructor(
     private _registeruserservice : RegisteruserService
+
   ) {
-    this.myForm = new FormGroup({
+    this.myForm = new FormGroup
+    ({
       fname: new FormControl(null, Validators.required),
       lname: new FormControl(null, Validators.required),
       uname: new FormControl(null, Validators.compose([
@@ -63,7 +66,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    
+
+    this.submitted = true;
+
+    if (this.myForm.invalid) {
+      console.log("Invalid Form");
+      return;
+  }
+
     console.log(this.myForm.value);
 
     if (this.myForm.valid) {
