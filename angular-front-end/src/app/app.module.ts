@@ -10,13 +10,16 @@ import { MatFormFieldModule, MatIconModule } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
-import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule}  from '@angular/material/snack-bar';
 import { LoginBannerComponent } from './login-banner/login-banner.component';
 import { LoginFooterComponent } from './login-footer/login-footer.component';
+
+import { RegisteruserService } from './registeruser.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,11 +44,12 @@ import { LoginFooterComponent } from './login-footer/login-footer.component';
     MatCheckboxModule,
     MatInputModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
  
 
-  providers: [],
+  providers: [ RegisteruserService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { RegisteruserService } from '../registeruser.service';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +10,11 @@ import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/fo
 export class RegisterComponent implements OnInit {
 
   myForm: FormGroup;
+  successMessage: String = '';
 
-  constructor() {
+  constructor(
+    private _registeruserservice : RegisteruserService
+  ) {
     this.myForm = new FormGroup({
       fname: new FormControl(null, Validators.required),
       lname: new FormControl(null, Validators.required),
@@ -18,7 +22,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('[a-zA-Z0-9_.]+')])),
       password: new FormControl(null, Validators.required),
-      cnfpass: new FormControl(null, this.passValidator)
+      cnfpass: new FormControl(null, Validators.compose([
+        Validators.required,
+        this.passValidator]))
     });
 
     this.myForm.controls.password.valueChanges
@@ -37,19 +43,15 @@ export class RegisterComponent implements OnInit {
 
   passValidator(control: AbstractControl) 
   {
-    console.log("Inside password validator");
     if (control && (control.value !== null || control.value !== undefined)) 
     {
       const cnfpassValue = control.value;
       const passControl = control.root.get('password');
-      console.log("Inside First if");
       if (passControl) 
       {
         const passValue = passControl.value;
-        console.log("Inside second if");
         if (passValue !== cnfpassValue || passValue === '') 
         {
-          console.log("Inside third if");
           return
           {
             isError: true
@@ -57,8 +59,20 @@ export class RegisterComponent implements OnInit {
         }
       }
     }
-    console.log("Returning null");
     return null;
+  }
+
+  register() {
+    
+    console.log(this.myForm.value);
+
+    if (this.myForm.valid) {
+      this._registeruserservice.submitRegister(this.myForm.value)
+        .subscribe(
+          data => this.successMessage = 'Registration Success',
+          error => this.successMessage = 'Some error'
+        );
+    }
   }
 
 
