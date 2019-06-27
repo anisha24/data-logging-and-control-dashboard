@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
     this.myForm = new FormGroup({
       fname: new FormControl(null, Validators.required),
       lname: new FormControl(null, Validators.required),
-      uname: new FormControl(null, this.unameValidator),
+      uname: new FormControl(null, Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9_.]+')])),
       password: new FormControl(null, Validators.required),
       cnfpass: new FormControl(null, this.passValidator)
     });
@@ -33,36 +35,29 @@ export class RegisterComponent implements OnInit {
     return this.myForm.get(controlName).invalid && this.myForm.get(controlName).touched;
   }
 
-  isTouched(controlName) {
-    if(this.myForm.get(controlName).touched)
-      return true;
-    else
-      return false;
-  }
-
   passValidator(control: AbstractControl) 
   {
+    console.log("Inside password validator");
     if (control && (control.value !== null || control.value !== undefined)) 
     {
       const cnfpassValue = control.value;
       const passControl = control.root.get('password');
+      console.log("Inside First if");
       if (passControl) 
       {
         const passValue = passControl.value;
+        console.log("Inside second if");
         if (passValue !== cnfpassValue || passValue === '') 
         {
-          return 
+          console.log("Inside third if");
+          return
           {
             isError: true
           };
         }
       }
     }
-    return null;
-  }
-
-  unameValidator(control : AbstractControl)
-  {
+    console.log("Returning null");
     return null;
   }
 

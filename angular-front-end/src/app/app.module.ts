@@ -15,6 +15,8 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginBannerComponent } from './login-banner/login-banner.component';
+import { LoginFooterComponent } from './login-footer/login-footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AlertComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginBannerComponent,
+    LoginFooterComponent
     
     
   ],
