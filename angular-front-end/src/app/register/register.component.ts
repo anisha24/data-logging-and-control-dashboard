@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RegisteruserService } from '../registeruser.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
   submitted = false;
 
   constructor(
-    private _registeruserservice : RegisteruserService
+    private _registeruserservice : RegisteruserService,
+    private formBuilder: FormBuilder
 
   ) {
     this.myForm = new FormGroup
@@ -25,9 +26,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('[a-zA-Z0-9_.]+')])),
       password: new FormControl(null, Validators.required),
-      cnfpass: new FormControl(null, Validators.compose([
-        Validators.required,
-        this.passValidator]))
+      cnfpass: new FormControl(null, this.passValidator)
     });
 
     this.myForm.controls.password.valueChanges

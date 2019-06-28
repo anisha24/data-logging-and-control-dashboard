@@ -14,10 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule}  from '@angular/material/snack-bar';
-import { LoginBannerComponent } from './login-banner/login-banner.component';
-import { LoginFooterComponent } from './login-footer/login-footer.component';
-
 import { RegisteruserService } from './registeruser.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -27,10 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AlertComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent,
-    LoginBannerComponent,
-    LoginFooterComponent
-    
+    RegisterComponent,  
     
   ],
   imports: [
@@ -43,7 +36,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatSnackBarModule,
     MatIconModule,
     HttpClientModule
   ],

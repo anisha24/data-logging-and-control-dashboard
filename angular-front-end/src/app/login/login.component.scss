@@ -1,0 +1,95 @@
+.bg{
+    background-image: url('../../../register-page-bgimg.jpg');
+    background-position: stretch;
+    background-repeat: no-repeat;
+    background: cover;
+    padding: 0em;
+    margin: 0%;
+}
+.formcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.6in;
+    padding-bottom: 2in;
+    opacity: 0.75;
+}
+
+.formbody{
+    display: flex;
+    width: 500px;
+    min-height: 200px;
+    background-color: white;
+    box-shadow:0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+
+  .header{
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;      
+  }
+
+div > span {
+    font-size: 0.75rem;
+    color: firebrick;
+}
+
+.form-btn {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    color: #291402;
+    line-height: 1.2;
+    text-transform: uppercase;
+  
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #F1D2B7 ;
+    outline: none;
+    border: 0px;
+    cursor: pointer;
+  }
+
+  .form-btn:hover{
+      background-color: #D7C0AD;
+  }
+
+  .form-btn-hollow {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    color: #291402;
+    line-height: 1.2;
+    text-transform: uppercase;
+    background-color:transparent;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border:1px solid #291402;
+    outline: none;    
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .form-btn-hollow:hover{
+      background-color: #D7C0AD;
+  }

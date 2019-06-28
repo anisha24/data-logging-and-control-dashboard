@@ -1,0 +1,39 @@
+<div class = "bg">
+    <div class="formcontainer">
+        <div class="formbody">
+            <form style="width:100%;">
+                <div class="header">
+                    <b>Sign In</b>
+                </div>
+                <form [formGroup]="loginForm">
+                    <div>
+                        <mat-form-field appearance="outline" style = "width: 500px">
+                            <mat-label>Username</mat-label>
+                            <input type="text" formControlName="unameLogin"  matInput placeholder="Username" id="unameLogin">
+                            <mat-icon matPrefix>person_pin</mat-icon>
+                            
+                        </mat-form-field><br><br>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline" style = "width: 500px">
+                            <mat-label>Password</mat-label>
+                            <input type="password" formControlName="passwordLogin" matInput placeholder="Password" id="passwordLogin">
+                            <mat-icon matPrefix>lock</mat-icon>
+                            
+                        </mat-form-field><br>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <button class="form-btn"><b>SIGN IN</b></button>
+                    </div>
+                    <br><br>
+                </form>
+                <div style="width: 500px; align-self: center">
+                    <nav>
+                        <a routerLink="/register"><button class="form-btn-hollow"><b>SIGN UP</b></button></a>
+                    </nav>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
