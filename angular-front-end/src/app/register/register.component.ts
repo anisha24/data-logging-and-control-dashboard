@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RegisteruserService } from '../registeruser.service';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RegSuccessDialogComponent } from '../reg-success-dialog/reg-success-dialog.component';
+import { RegFailureDialogComponent } from '../reg-failure-dialog/reg-failure-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +19,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _registeruserservice : RegisteruserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public dialog: MatDialog)
 
-  ) {
+  {
+    
+   }
+
+  ngOnInit() {
+
     this.myForm = new FormGroup
     ({
       fname: new FormControl(null, Validators.required),
@@ -34,9 +45,6 @@ export class RegisterComponent implements OnInit {
         x => this.myForm.controls.cnfpass.updateValueAndValidity()
     );
 
-   }
-
-  ngOnInit() {
   }
 
   isValid(controlName) {
@@ -75,13 +83,48 @@ export class RegisterComponent implements OnInit {
 
     console.log(this.myForm.value);
 
-    if (this.myForm.valid) {
+    if (this.myForm.valid) 
+    {
       this._registeruserservice.submitRegister(this.myForm.value)
         .subscribe(
-          data => this.successMessage = 'Registration Success',
-          error => this.successMessage = 'Some error'
+          data => this.openSuccessDialog(),
+          error => this.openFailureDialog(),
         );
     }
+  }
+
+
+  moveToLogin()
+  {
+    this.router.navigate(['/']);
+  }
+
+  openSuccessDialog() :void {
+
+
+      let dialogRef = this.dialog.open(RegSuccessDialogComponent , {
+        data: { message : "Registration Succes"}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+      this.router.navigate(['']);
+    
+  }
+
+  openFailureDialog() :void {
+
+
+      let dialogRef = this.dialog.open(RegFailureDialogComponent , {
+        data: { message : "Registration Failure"}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+      
+    
   }
 
 

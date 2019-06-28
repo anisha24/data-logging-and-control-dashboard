@@ -16,6 +16,9 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { RegisteruserService } from './registeruser.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material';
+import { RegSuccessDialogComponent } from './reg-success-dialog/reg-success-dialog.component';
+import { RegFailureDialogComponent } from './reg-failure-dialog/reg-failure-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     AlertComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent,  
+    RegisterComponent,
+    RegSuccessDialogComponent,
+    RegFailureDialogComponent,  
     
   ],
   imports: [
@@ -37,10 +42,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatInputModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
  
-
+  entryComponents:[ RegSuccessDialogComponent, RegFailureDialogComponent],
   providers: [ RegisteruserService ],
   bootstrap: [AppComponent]
 })
