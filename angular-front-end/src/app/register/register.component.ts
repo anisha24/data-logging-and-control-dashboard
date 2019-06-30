@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegSuccessDialogComponent } from '../reg-success-dialog/reg-success-dialog.component';
 import { RegFailureDialogComponent } from '../reg-failure-dialog/reg-failure-dialog.component';
+import { isError } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -51,19 +52,14 @@ export class RegisterComponent implements OnInit {
     return this.myForm.get(controlName).invalid && this.myForm.get(controlName).touched;
   }
 
-  passValidator(control: AbstractControl) 
-  {
-    if (control && (control.value !== null || control.value !== undefined)) 
-    {
+  passValidator(control: AbstractControl) {
+    if (control && (control.value !== null || control.value !== undefined)) {
       const cnfpassValue = control.value;
       const passControl = control.root.get('password');
-      if (passControl) 
-      {
+      if (passControl) {
         const passValue = passControl.value;
-        if (passValue !== cnfpassValue || passValue === '') 
-        {
-          return
-          {
+        if (passValue !== cnfpassValue || passValue === '') {
+          return{
             isError: true
           };
         }
