@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisteruserService } from '../registeruser.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    private _registeruserservice: RegisteruserService,) {
     this.loginForm = new FormGroup
     ({
       unameLogin: new FormControl(null, Validators.compose([
@@ -24,9 +26,30 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  isValid(controlName) {
+    return this.loginForm.get(controlName).invalid && this.loginForm.get(controlName).touched;
+  }
+
   moveToRegister(){
     this.router.navigate(['/register']);
   }
+
+  login() {
+    console.log(this.loginForm.value);
+
+    if (this.loginForm.valid) {
+      this._registeruserservice.login(this.loginForm.value)
+        .subscribe(
+          data => {
+            console.log(data);
+            localStorage.setItem('token', data.toString());
+            this.router.navigate(['/dashboard']);
+          },
+          error => { }
+        );
+    }
+  }
+
 
 }
 

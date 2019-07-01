@@ -19,32 +19,33 @@ export class RegisterComponent implements OnInit {
   submitted = false;
 
   constructor(
-    private _registeruserservice : RegisteruserService,
+    private _registeruserservice: RegisteruserService,
     private formBuilder: FormBuilder,
     private router: Router,
-    public dialog: MatDialog)
+    public dialog: MatDialog) {
 
-  {
-    
-   }
+  }
 
   ngOnInit() {
 
     this.myForm = new FormGroup
-    ({
-      fname: new FormControl(null, Validators.required),
-      lname: new FormControl(null, Validators.required),
-      uname: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9_.]+')])),
-      password: new FormControl(null, Validators.required),
-      cnfpass: new FormControl(null, this.passValidator)
-    });
+      ({
+        fname: new FormControl(null, Validators.required),
+        lname: new FormControl(null, Validators.required),
+        uname: new FormControl(null, Validators.compose([
+          Validators.required,
+          Validators.pattern('[a-zA-Z0-9_.]+')])),
+        password: new FormControl(null, Validators.required),
+        cnfpass: new FormControl(null, Validators.compose([
+          this.passValidator,
+          Validators.required
+        ]))
+      });
 
     this.myForm.controls.password.valueChanges
       .subscribe(
         x => this.myForm.controls.cnfpass.updateValueAndValidity()
-    );
+      );
 
   }
 
@@ -59,7 +60,7 @@ export class RegisterComponent implements OnInit {
       if (passControl) {
         const passValue = passControl.value;
         if (passValue !== cnfpassValue || passValue === '') {
-          return{
+          return {
             isError: true
           };
         }
@@ -75,12 +76,11 @@ export class RegisterComponent implements OnInit {
     if (this.myForm.invalid) {
       console.log("Invalid Form");
       return;
-  }
+    }
 
     console.log(this.myForm.value);
 
-    if (this.myForm.valid) 
-    {
+    if (this.myForm.valid) {
       this._registeruserservice.submitRegister(this.myForm.value)
         .subscribe(
           data => this.openSuccessDialog(),
@@ -90,37 +90,36 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  moveToLogin()
-  {
-    this.router.navigate(['/']);
+  moveToLogin() {
+    this.router.navigate(['/login']);
   }
 
-  openSuccessDialog() :void {
+  openSuccessDialog(): void {
 
 
-      let dialogRef = this.dialog.open(RegSuccessDialogComponent , {
-        data: { message : "Registration Succes"}
-      });
+    let dialogRef = this.dialog.open(RegSuccessDialogComponent, {
+      data: { message: "Registration Succes" }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-      this.router.navigate(['']);
-    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    this.router.navigate(['/login']);
+
   }
 
-  openFailureDialog() :void {
+  openFailureDialog(): void {
 
 
-      let dialogRef = this.dialog.open(RegFailureDialogComponent , {
-        data: { message : "Registration Failure"}
-      });
+    let dialogRef = this.dialog.open(RegFailureDialogComponent, {
+      data: { message: "Registration Failure" }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-      
-    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+
   }
 
 

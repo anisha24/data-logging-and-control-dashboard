@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material';
 import { RegSuccessDialogComponent } from './reg-success-dialog/reg-success-dialog.component';
 import { RegFailureDialogComponent } from './reg-failure-dialog/reg-failure-dialog.component';
+import { LoginBannerComponent } from './login-banner/login-banner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RegFailureDialogComponent } from './reg-failure-dialog/reg-failure-dial
     DashboardComponent,
     RegisterComponent,
     RegSuccessDialogComponent,
-    RegFailureDialogComponent,  
+    RegFailureDialogComponent,
+    LoginBannerComponent,  
     
   ],
   imports: [
