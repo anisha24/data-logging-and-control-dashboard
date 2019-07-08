@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisteruserService } from '../registeruser.service';
 import { Router } from '@angular/router';
+import { MatSidenavModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,12 +17,19 @@ export class DashboardComponent implements OnInit {
   username = "";
 
   constructor( private router: Router,
-    private regservice: RegisteruserService) { 
+    private regservice: RegisteruserService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer) { 
       this.regservice.getUserName()
     .subscribe(
       data => this.user= data.toString(),
       error => this.router.navigate(['/login']),
     )
+
+    iconRegistry.addSvgIcon(
+      'hamicon',
+      sanitizer.bypassSecurityTrustResourceUrl('../../../navIcon.jpg'));
+
     }
 
   ngOnInit() {
@@ -27,11 +38,6 @@ export class DashboardComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-  }
-
-  properReturnedData(val1, val2) {
-    this.user = val1.toString();
-    this.username = val2.toString();
   }
 
 }

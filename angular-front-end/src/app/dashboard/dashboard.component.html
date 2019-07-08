@@ -1,27 +1,35 @@
-<header>
-    <div class='container'>
-        <b style="font-size: 22px; color: white">Hello {{user}}</b>
-        <nav>
-            <ul>
-                <li><button (click)='logout()'><div style='font-size: 19px; color: white'>LOGOUT</div></button></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+
+<mat-toolbar>
+    <button (click)='sidenav.toggle()'><mat-icon style="color: white">menu</mat-icon></button>
+    <b style="font-size: 22px; color: white">Hello {{user}}</b>
+    <nav>
+        <ul>
+            <li><button (click)='logout()'><div style='font-size: 19px; color: white'>LOGOUT</div></button></li>
+        </ul>
+    </nav>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode='side' [(opened)]='opened'>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/dashboard">DASHBOARD</a>
+            <a mat-list-item routerLink="/visualisation">VISUALISATION</a>
+            <a mat-list-item routerLink="/config">CONFIGURE</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-dashboard-view></app-dashboard-view>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<br> 
 <br>
-<div class="sidenav">
-    <a href='/dashboard'>DASHBOARD</a>
-</div>
-<br>
-<div style="color: #5491A7">
-    <b style='font-size: 34px; margin-left: 320px'>Dashboard</b>
-</div>
-<br>
-<mat-form-field appearance="outline" style = "width: 500px; height: 8px; margin-left: 320px">
-    <mat-label>Search</mat-label>
-    <input type="text" formControlName="dashSearch" matInput placeholder="Search node by ID" id="dashSearch">
-    <mat-icon matSuffix>search</mat-icon>
-</mat-form-field>
+
+
 
 
 

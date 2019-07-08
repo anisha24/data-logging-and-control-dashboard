@@ -1,20 +1,50 @@
-header {
-  background: #279fa3;
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
-  .logo {
-    font-weight: bold;
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  padding: 16px;
+  background-color: #1d79a1;
+  width: 250px;
+  a {
+    margin-left: 0px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
   }
+  a:hover {
+    color: #f1f1f1;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
 
+mat-toolbar {
+  background: #279fa3;
+  b {
+    margin-left: 4%;
+  }
   nav {
     justify-self: right;
 
     ul {
       list-style-type: none;
+      margin-left: 70%;
       margin: 0;
       padding: 0;
 
       li {
         float: left;
+        margin-left: 1200%;
 
         a {
           padding: 1.5em;
@@ -24,48 +54,48 @@ header {
     }
   }
 }
-button {
-   padding: 0;
-   border: none;
-   background: none;
-   cursor: pointer;
-}
 
-.sidenav {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  z-index: 1;
-  top: 67px;
-  left: 0;
-  background-color: #1D79A1;
-  overflow-x: hidden;
-  padding-top: 80px;
-}
+.insideToolbar {
+  background-color: #f5f3f1;
+  height: 0.8in;
+  b {
+    margin-left: 0;
+  }
+  #custom-search-input {
+    border: solid 1px #e4e4e4;
+    border-radius: 6px;
+    background-color: #fff;
+    width: 450px;
+    align-self: center;
+    text-align: center;
+  }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  margin-left: 12px;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-}
+  #custom-search-input input {
+    border: 0;
+    box-shadow: none;
+    height: 10px;
+    vertical-align: center;
+    height: 40px;
+    font-size: 18px;
+  }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  #custom-search-input button {
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+  }
 
-.main {
-  margin-left: 160px; 
-  font-size: 28px; 
-  padding: 0px 10px;
-}
+  #custom-search-input button:hover {
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+  }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  #custom-search-input .glyphicon-search {
+    font-size: 23px;
+  }
 }
