@@ -1,2 +1,29 @@
-<h1>Hello {{user}}</h1>
-<button (click)="logout()">Logout</button>
+<header>
+    <div class='container'>
+        <b style="font-size: 22px; color: white">Hello {{user}}</b>
+        <nav>
+            <ul>
+                <li><button (click)='logout()'><div style='font-size: 19px; color: white'>LOGOUT</div></button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<br>
+<div class="sidenav">
+    <a href='/dashboard'>DASHBOARD</a>
+</div>
+<br>
+<div style="color: #5491A7">
+    <b style='font-size: 34px; margin-left: 320px'>Dashboard</b>
+</div>
+<br>
+<mat-form-field appearance="outline" style = "width: 500px; height: 8px; margin-left: 320px">
+    <mat-label>Search</mat-label>
+    <input type="text" formControlName="dashSearch" matInput placeholder="Search node by ID" id="dashSearch">
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+
+
+
+

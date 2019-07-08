@@ -22,9 +22,9 @@ router.post('/register', function (req, res, next) {
   })
 })
 
+
 router.post('/login', function (req, res, next) {
   let promise = User.findOne({ username: req.body.unameLogin }).exec();
-
   promise.then(function (doc) {
     if (doc) {
       if (doc.isValid(req.body.passwordLogin)) {

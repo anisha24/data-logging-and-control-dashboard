@@ -21,9 +21,10 @@ a {
 .container {
     width: 80%;
     margin: 0 auto;
-    padding: 2em;
+    padding: 1.25em;
     display: grid;
     grid-template-columns: 30% auto;
+    vertical-align: middle;
 
     a {
         color: #291402;

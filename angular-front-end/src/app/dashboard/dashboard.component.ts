@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   user = "";
+  username = "";
 
   constructor( private router: Router,
     private regservice: RegisteruserService) { 
@@ -26,6 +27,11 @@ export class DashboardComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  properReturnedData(val1, val2) {
+    this.user = val1.toString();
+    this.username = val2.toString();
   }
 
 }

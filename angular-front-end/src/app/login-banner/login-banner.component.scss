@@ -1,14 +1,24 @@
 header {
     background: #F5C288;
+    height: 55px;
+    vertical-align: center;
+    position: relative;
+    top:0;
+    padding: 10px;
     nav {
         justify-self: center;
-        height : 30px;
+        justify-content: center;
+        vertical-align: center;
+        height : 55px;
+        position: relative;
         a {
             font-size: 22px;
             color: #291402;
             text-align: center;
-            font-weight: bold;
-            
+            font-weight: bold;    
+        }
+        a:hover {
+            color: #34CCD1;
         }
     }
 }
