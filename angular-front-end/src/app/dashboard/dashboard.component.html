@@ -10,16 +10,16 @@
     <b style="font-size: 22px; color: white">Hello {{user}}</b>
     <nav>
         <ul>
-            <li><button (click)='logout()'><div style='font-size: 19px; color: white'>LOGOUT</div></button></li>
+            <li><button (click)='logout()'><div style='font-size: 19px; color: white'> LOGOUT</div></button></li>
         </ul>
     </nav>
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode='side' [(opened)]='opened'>
-        <mat-nav-list>
-            <a mat-list-item routerLink="/dashboard">DASHBOARD</a>
-            <a mat-list-item routerLink="/visualisation">VISUALISATION</a>
-            <a mat-list-item routerLink="/config">CONFIGURE</a>
+        <mat-nav-list style="margin-top: 50px">
+            <button (click)='sidenav.close()'><a mat-list-item routerLink="/dashboard" routerLinkActive="active"><mat-icon>dashboard</mat-icon><span>&nbsp;&nbsp;</span>DASHBOARD</a></button>
+            <button (click)='sidenav.close()'><a mat-list-item routerLink="/visual" routerLinkActive="active"><mat-icon>timeline</mat-icon><span>&nbsp;&nbsp;</span>VISUALISATION</a></button>
+            <button (click)='sidenav.close()'><a mat-list-item routerLink="/config" routerLinkActive="active"><mat-icon>settings</mat-icon><span>&nbsp;&nbsp;</span>PROFILE</a></button>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
