@@ -5,6 +5,7 @@ import { MatSidenavModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavService } from '../nav.service'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -16,26 +17,25 @@ export class DashboardComponent implements OnInit {
   user = "";
   username = "";
 
-  constructor( private router: Router,
+
+  constructor(private router: Router,
     private regservice: RegisteruserService,
     iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer) { 
-      this.regservice.getUserName()
-    .subscribe(
-      data => this.user= data.toString(),
-      error => this.router.navigate(['/login']),
-    )
+    sanitizer: DomSanitizer,
+    private navService: NavService) {
+    this.regservice.getUserName()
+      .subscribe(
+        data => this.user = data.toString(),
+        error => this.router.navigate(['/login']),
+      )
 
-    iconRegistry.addSvgIcon(
-      'hamicon',
-      sanitizer.bypassSecurityTrustResourceUrl('../../../navIcon.jpg'));
 
-    }
+  }
 
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }

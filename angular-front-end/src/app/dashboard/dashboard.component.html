@@ -17,13 +17,15 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode='side' [(opened)]='opened'>
         <mat-nav-list style="margin-top: 50px">
-            <button (click)='sidenav.close()'><a mat-list-item routerLink="/dashboard" routerLinkActive="active"><mat-icon>dashboard</mat-icon><span>&nbsp;&nbsp;</span>DASHBOARD</a></button>
-            <button (click)='sidenav.close()'><a mat-list-item routerLink="/visual" routerLinkActive="active"><mat-icon>timeline</mat-icon><span>&nbsp;&nbsp;</span>VISUALISATION</a></button>
-            <button (click)='sidenav.close()'><a mat-list-item routerLink="/config" routerLinkActive="active"><mat-icon>settings</mat-icon><span>&nbsp;&nbsp;</span>PROFILE</a></button>
+            <a mat-list-item routerLink="/dashboard/dash" routerLinkActive="active"><button (click)='sidenav.close()'><mat-icon>dashboard</mat-icon><span>&nbsp;&nbsp;</span>DASHBOARD</button></a>
+            <a mat-list-item routerLink="/dashboard/visual" routerLinkActive="active"><button (click)='sidenav.close()'><mat-icon>timeline</mat-icon><span>&nbsp;&nbsp;</span>VISUALISATION</button></a>
+            <a mat-list-item routerLink="/dashboard/config" routerLinkActive="active"><button (click)='sidenav.close()'><mat-icon>settings</mat-icon><span>&nbsp;&nbsp;</span>PROFILE</button></a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-dashboard-view></app-dashboard-view>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
     </mat-sidenav-content>
 </mat-sidenav-container>
 <br> 

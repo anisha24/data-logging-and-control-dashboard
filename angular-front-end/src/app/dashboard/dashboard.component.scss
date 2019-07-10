@@ -11,7 +11,7 @@ mat-sidenav-container {
 
 mat-sidenav {
   background-color: #1d79a1;
-  width: 190px;
+  width: 200px;
   a {
     margin-left: 0px;
     text-decoration: none;
@@ -21,12 +21,16 @@ mat-sidenav {
   }
   a:hover {
     color: #f1f1f1;
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
   }
   .active {
-    background-color: #12526d;
+    background-color: #1e8ebe;
+    border-right-width: 10px;
+    border-right-color: #1fe44a;
+    margin-right: 5px;
+    border-right-style: solid;
   }
 }
 
