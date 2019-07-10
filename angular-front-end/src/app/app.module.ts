@@ -11,7 +11,7 @@ import { MatFormFieldModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatGridListModule, MatCardModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { RegisteruserService } from './registeruser.service';
@@ -55,7 +55,9 @@ import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
     MatDialogModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatCardModule
   ],
  
   entryComponents:[ RegSuccessDialogComponent, RegFailureDialogComponent],

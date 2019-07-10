@@ -9,7 +9,7 @@
                     <div>
                         <mat-form-field appearance="outline" style = "width: 500px">
                             <mat-label>Username</mat-label>
-                            <input type="text" formControlName="unameLogin"  matInput placeholder="Username" id="unameLogin">
+                            <input type="text" formControlName="unameLogin"  matInput placeholder="Username" id="unameLogin" autocomplete="off">
                             <mat-icon matPrefix>person_pin</mat-icon>
                             <mat-error *ngIf = "isValid('unameLogin')"><mat-icon style = "display: inline-flex;vertical-align: -1px ">warning</mat-icon><span> &nbsp;</span>Username is required</mat-error>
                         </mat-form-field><br><br>

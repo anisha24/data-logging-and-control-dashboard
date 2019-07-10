@@ -3,7 +3,7 @@ import { RegisteruserService } from '../registeruser.service';
 import { Router } from '@angular/router';
 import { MatSidenavModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavService } from '../nav.service'; 
 
@@ -20,8 +20,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private router: Router,
     private regservice: RegisteruserService,
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
     private navService: NavService) {
     this.regservice.getUserName()
       .subscribe(

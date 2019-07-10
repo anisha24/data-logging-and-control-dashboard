@@ -6,6 +6,10 @@ body, html {
     margin: 0 auto;
 }
 
+*{
+    font-family: 'Montserrat';
+}
+
 body {
     font-family: 'Montserrat';
     font-size: 18px;
@@ -37,5 +41,8 @@ section {
     padding: 2em;
 }
 
+button:focus{
+    outline: 0;
+}
 
 
