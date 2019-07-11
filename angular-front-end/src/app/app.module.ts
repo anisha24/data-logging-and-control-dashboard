@@ -23,10 +23,8 @@ import { LoginBannerComponent } from './login-banner/login-banner.component';
 import { DashboardViewComponent } from './dashboard-view/dashboard-view.component';
 import { VisualisationComponent } from './visualisation/visualisation.component';
 import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
-
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { NgxGaugeModule } from 'ngx-gauge';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +37,7 @@ import { NgxGaugeModule } from 'ngx-gauge';
     LoginBannerComponent,
     DashboardViewComponent,
     VisualisationComponent,
-    ConfgaccountComponent,  
+    ConfgaccountComponent,
     
   ],
   imports: [
@@ -60,7 +58,8 @@ import { NgxGaugeModule } from 'ngx-gauge';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    NgxGaugeModule
+    NgxGaugeModule,
+    NgMasonryGridModule,
   ],
  
   entryComponents:[ RegSuccessDialogComponent, RegFailureDialogComponent],

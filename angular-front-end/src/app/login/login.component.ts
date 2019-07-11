@@ -13,14 +13,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private router: Router,
-    private _registeruserservice: RegisteruserService,) {
+    private _registeruserservice: RegisteruserService, ) {
     this.loginForm = new FormGroup
-    ({
-      unameLogin: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9_.]+')])),
-      passwordLogin: new FormControl(null, Validators.required),
-    });
+      ({
+        unameLogin: new FormControl(null, Validators.compose([
+          Validators.required,
+          Validators.pattern('[a-zA-Z0-9_.]+')])),
+        passwordLogin: new FormControl(null, Validators.required),
+      });
   }
 
   ngOnInit() {
@@ -30,13 +30,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(controlName).invalid && this.loginForm.get(controlName).touched;
   }
 
-  moveToRegister(){
+  moveToRegister() {
     this.router.navigate(['/register']);
   }
 
   login() {
-    console.log(this.loginForm.value);
-
     if (this.loginForm.valid) {
       this._registeruserservice.login(this.loginForm.value)
         .subscribe(
@@ -53,8 +51,8 @@ export class LoginComponent implements OnInit {
 
 }
 
-  
 
-  
 
-  
+
+
+

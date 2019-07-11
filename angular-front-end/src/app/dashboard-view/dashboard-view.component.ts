@@ -7,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardViewComponent implements OnInit {
 
-  gaugeType = "arch";
-  gaugeValue = 28.3;
-  gaugeLabel = "temp";
-  gaugeAppendText = "deg";
 
   constructor() { }
 

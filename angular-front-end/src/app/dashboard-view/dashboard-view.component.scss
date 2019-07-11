@@ -77,42 +77,35 @@ mat-toolbar {
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  background-color: rgb(250, 243, 234);
+  height: 388px;
+  width: 290px;
 }
 
 .dashboard-card-content {
   margin-top: 10px;
   font-size: 20px;
-  margin-left: 0px;
-  padding-left: 0px;
-
-  .numDisp {
-    font-weight: 600;
-    font-size: 20px;
-    width: 63px;
-    height: 30px;
-    margin-top: 5px;
-  }
-
-  tr{
-    height: 240px;
-  }
 }
 
 .dashboard-card-title {
   font-weight: bolder;
   font-family: "Montserrat";
   font-size: 17px;
+  text-align: center;
 }
 
 .outer {
   margin-top: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 60px;
+  margin-right: 20px;
 }
 
+mat-grid-tile {
+  background-color: #279fa3;
+}
+
+ng-masonry-grid {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.masonry-item { width: 200px; }
