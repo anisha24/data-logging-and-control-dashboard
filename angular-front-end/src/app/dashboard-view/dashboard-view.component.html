@@ -21,17 +21,39 @@
 </mat-toolbar>
 
 
-<mat-grid-list cols="2" rowHeight="300px" gutterSize="5px" class="outer">
+<mat-grid-list cols="1" rowHeight="300px" gutterSize="5px" class="outer">
     <mat-grid-tile>
         <mat-card class="dashboard-card">
-            <mat-card-header>
-                <mat-card-title class="dashboard-card-title">
-                    <b>NODE ID: 435433</b>
-                </mat-card-title>
-            </mat-card-header>
-            <hr>
             <mat-card-content class="dashboard-card-content">
-                Text        
+                <table border="1">
+                    <tr>
+                        <td style="width: 230px">
+                            <mat-card>
+                                <mat-card-content style="width: 230px; height: 205px">
+                                    <div style="text-align: center">NODE ID</div>
+                                    <div
+                                        style="text-align: center; padding-top: 45px; font-weight: bold; font-size:60px;">
+                                        12345</div>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                        <td style="width: 318px">
+                            <mat-card>
+                                <mat-card-content style="width: 250px; height: 205px">
+                                    <div style="text-align: center">TEMPERATURE</div>
+                                    <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [append]="gaugeAppendText">
+                                    </ngx-gauge>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                        <td style="width: 318px">
+                            dfd
+                        </td>
+                        <td style="width: 318px">
+                            dwqdqw
+                        </td>
+                    </tr>
+                </table>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>

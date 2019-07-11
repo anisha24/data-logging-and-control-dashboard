@@ -24,6 +24,8 @@ import { DashboardViewComponent } from './dashboard-view/dashboard-view.componen
 import { VisualisationComponent } from './visualisation/visualisation.component';
 import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
 
+import { NgxGaugeModule } from 'ngx-gauge';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    NgxGaugeModule
   ],
  
   entryComponents:[ RegSuccessDialogComponent, RegFailureDialogComponent],
