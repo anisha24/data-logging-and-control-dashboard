@@ -1,0 +1,76 @@
+<mat-toolbar class="insideToolbar">
+    <div style="color: rgb(65, 113, 131); margin-left: 5%; padding-top: 10px">
+        <b style='font-size: 35px; margin-left: 20%; vertical-align: center'>Dashboard</b>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Search node by ID" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
+
+
+<mat-grid-list cols="1" rowHeight="320px" gutterSize="5px" class="outer">
+    <mat-grid-tile>
+        <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+                <table border="0">
+                    <tr>
+                        <td style="width: 210px">
+                            <mat-card>
+                                <mat-card-content style="width: 230px; height: 225px">
+                                    <div style="text-align: center">NODE ID</div>
+                                    <div
+                                        style="text-align: center; padding-top: 45px; font-weight: bold; font-size:60px;">
+                                        12345</div>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                        <td style="width: 255px">
+                            <mat-card>
+                                <mat-card-content style="width: 240px; height: 225px">
+                                    <div style="padding-top: 10px; text-align: center">
+                                        <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel"
+                                            [append]="gaugeAppendText" [thresholds]="thresholdConfig" min="0" max="40">
+                                        </ngx-gauge>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                        <td style="width: 255px">
+                            <mat-card>
+                                <mat-card-content style="width: 240px; height: 225px">
+                                    <div style="padding-top: 10px; text-align: center">
+                                        <ngx-gauge [type]="gaugeType1" [value]="gaugeValue" [label]="gaugeLabel"
+                                            [append]="gaugeAppendText" [thresholds]="thresholdConfig" min="0" max="40">
+                                        </ngx-gauge>
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                        <td style="width: 255px">
+                            <mat-card>
+                                <mat-card-content style="width: 240px; height: 225px">
+                                    <div style="padding-top: 10px; text-align: center">
+                                        
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
