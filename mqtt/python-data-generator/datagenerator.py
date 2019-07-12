@@ -4,7 +4,11 @@ import random
 import time
 from timeloop import Timeloop
 from datetime import timedelta
+from datetime import datetime
  
+nodeID = str(1)
+now = str(datetime.now())
+
 def on_connect(client, userdata, flags, rc):
  
     if rc == 0:
@@ -21,7 +25,7 @@ port = 10174
 user = "zwfxzaip"
 password = "8rQqi99icKka"
  
-client = mqttClient.Client("Python")               
+client = mqttClient.Client("NodeData")               
 client.username_pw_set(user, password=password)    
 client.on_connect= on_connect                      
 client.connect(broker_address, port=port)          
@@ -36,16 +40,15 @@ try:
 
     @tl.job(interval=timedelta(seconds=5))
     def sample_job_every_10s():
-        temp = random.uniform(15,30)
-        humidity = random.uniform(20,50)
-        pressure = random.uniform(1.0,1.2)
-        val_list = [temp, humidity, pressure]
-        print("Published Value : ", val_list)
-        client.publish("python/temp",temp)
-        client.publish("python/humid",humidity)
-        client.publish("python/press",pressure)
+        temp = str(round(random.uniform(15,30),3))
+        humidity = str(round(random.uniform(20,50),3))
+        pressure = str(round(random.uniform(1.0,1.2),3))
+        val_list = nodeID + ',' + temp + ',' + humidity + ',' + pressure + ',' + now
+        publish_list = str(val_list)
+        print("Published Value : ", publish_list)
+        client.publish("nodeData", publish_list)
         
-    tl.start(block=True)
+    tl.start(block=True) 
  
 except KeyboardInterrupt:
  

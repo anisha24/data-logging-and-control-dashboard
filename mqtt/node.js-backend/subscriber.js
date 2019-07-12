@@ -4,72 +4,48 @@ require('mongoose-double')(mongoose);
 
 var options =
 {
-    clientId : "mqttjs01",
-    username : "zwfxzaip",
-    password : "8rQqi99icKka",
-    port : 10174,
-    clean : true
+    clientId: "mqttjs01",
+    username: "zwfxzaip",
+    password: "8rQqi99icKka",
+    port: 10174,
+    clean: true
 };
 
 var client = mqtt.connect("mqtt://m24.cloudmqtt.com", options)
 
-mongoose.connect('mongodb://localhost:27017/valuedb')
+mongoose.connect('mongodb://localhost:27017/valuedb', { useNewUrlParser: true })
 
 var SchemaTypes = mongoose.Schema.Types;
 
-var tempSchema = new mongoose.Schema({
-  temp : SchemaTypes.Double,
-  time : String
-});
+var nodeDataSchema = new mongoose.Schema({
+    nodeID: Number,
+    TEMPERATURE: SchemaTypes.Double,
+    HUMIDITY: SchemaTypes.Double,
+    PRESSURE: SchemaTypes.Double,
+    time: Date
+},{collection: 'allNodeData'});
 
-var humidSchema = new mongoose.Schema({
-    humid : SchemaTypes.Double,
-    time : String
-});
+var nodeData = mongoose.model('nodeData', nodeDataSchema);
 
-var presSchema = new mongoose.Schema({
-    press : SchemaTypes.Double,
-    time : String
-});
+var queue = [];
 
-var tempData = mongoose.model('tempData', tempSchema);
-var humidData = mongoose.model('humidData', humidSchema);
-var presData = mongoose.model('presData', presSchema);
-
-client.on("connect", function()
-{	
+client.on("connect", function () {
     console.log("connected")
 });
 
-client.subscribe("python/temp");
-client.subscribe("python/humid");
-client.subscribe("python/press");
+client.subscribe("nodeData");
 
-client.on('message', function(topic, message, packet)
-{
-    var date = new Date() + "";
-    if(topic == "python/temp")
-    {
-        var tem = tempData({temp : parseFloat(message), time : date}).save(function(err)
-        {
-            if(err) throw err
-            console.log("Temperature saved")
-        })
-    }
-    else if(topic == "python/humid")
-    {
-        var hum = humidData({humid : parseFloat(message), time : date}).save(function(err)
-        {
-            if(err) throw err
-            console.log("Humidity saved")
-        })
-    }
-    else if(topic == "python/press")
-    {
-        var pre = presData({press : parseFloat(message), time : date}).save(function(err)
-        {
-            if(err) throw err
-            console.log("Pressure saved")
-        })
-    }
+client.on('message', function (topic, message, packet) {
+
+    queue.push(message.toString());
+
+    // toInsertNID = message.toString().split(',');
+    // console.log(toInsertNID[0]);
+
+    // var tem = nodeData({ temp: parseFloat(message), time: date }).save(function (err) {
+    //     if (err) throw err
+    //     console.log("Temperature saved")
+    // })
 })
+
+
