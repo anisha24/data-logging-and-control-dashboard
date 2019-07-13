@@ -23,7 +23,7 @@ var nodeDataSchema = new mongoose.Schema({
     HUMIDITY: SchemaTypes.Double,
     PRESSURE: SchemaTypes.Double,
     time: Date
-},{collection: 'allNodeData'});
+});
 
 var nodeData = mongoose.model('nodeData', nodeDataSchema);
 
@@ -37,15 +37,29 @@ client.subscribe("nodeData");
 
 client.on('message', function (topic, message, packet) {
 
-    queue.push(message.toString());
+    var collData = message.toString().split(',');
+    var collName = collData[0];
+    var nodeData = mongoose.model('nodeData', collName, nodeDataSchema)
+    var colNum = parseInt(collData[0])
+    var insTemp = parseFloat(collData[1])
+    var insHum = parseFloat(collData[2])
+    var insPres = parseFloat(collData[3])
+    var insDate = new Date(collData[4])
 
-    // toInsertNID = message.toString().split(',');
-    // console.log(toInsertNID[0]);
-
-    // var tem = nodeData({ temp: parseFloat(message), time: date }).save(function (err) {
-    //     if (err) throw err
-    //     console.log("Temperature saved")
-    // })
+    var ins = nodeData({
+        nodeID: colNum,
+        TEMPERATURE: insTemp,
+        HUMIDITY: insHum,
+        PRESSURE: insPres,
+        time: insDate
+    }).save(function(err) {
+        if(err) {
+            throw err
+        } else {
+            if(colNum === 1) console.log("Success 1!!!!")
+            else console.log("Success 2!!!!")
+        }
+    })
 })
 
 

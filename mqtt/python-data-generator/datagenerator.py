@@ -7,7 +7,6 @@ from datetime import timedelta
 from datetime import datetime
  
 nodeID = str(1)
-now = str(datetime.now())
 
 def on_connect(client, userdata, flags, rc):
  
@@ -43,6 +42,7 @@ try:
         temp = str(round(random.uniform(15,30),3))
         humidity = str(round(random.uniform(20,50),3))
         pressure = str(round(random.uniform(1.0,1.2),3))
+        now = str(datetime.now())
         val_list = nodeID + ',' + temp + ',' + humidity + ',' + pressure + ',' + now
         publish_list = str(val_list)
         print("Published Value : ", publish_list)
