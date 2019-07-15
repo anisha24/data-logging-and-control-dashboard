@@ -3,24 +3,39 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var cors = require('cors');
 var app = express();
 
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/logincred')
 
-var cors = require('cors');
-app.use(cors({
-  origin:'http://localhost:4200'
-}));
+//to setup mongoose to connect to mongoDB
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost:27017/edge-net-dashboard', { useNewUrlParser: true, useCreateIndex: true }).then(function () {
+  console.log("Connected to database!!");
+});
+
+
+//to handle cross origin requests
+
+// const whitelist = ['http://localhost:4200', 'http://127.0.0.1:4200'];
+// const corsOptions = {
+//   credentials: true, // This is important to ensure sockets are allowed
+//   origin: (origin, callback) => {
+//     if(whitelist.includes(origin))
+//       return callback(null, true)
+//       callback(new Error('Not allowed by CORS'));
+//   }
+// }
+app.use(cors());
+//  app.options('*', cors());
+//app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(express.static(path.join('public')))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

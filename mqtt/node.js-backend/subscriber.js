@@ -13,7 +13,9 @@ var options =
 
 var client = mqtt.connect("mqtt://m24.cloudmqtt.com", options)
 
-mongoose.connect('mongodb://localhost:27017/valuedb', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/edge-net-dashboard', { useNewUrlParser: true, useCreateIndex: true }).then(function () {
+    console.log("Connected to MongoDB");
+})
 
 var SchemaTypes = mongoose.Schema.Types;
 
@@ -30,7 +32,7 @@ var nodeData = mongoose.model('nodeData', nodeDataSchema);
 var queue = [];
 
 client.on("connect", function () {
-    console.log("connected")
+    console.log("Connected to CloudMQTT")
 });
 
 client.subscribe("nodeData");
@@ -55,10 +57,7 @@ client.on('message', function (topic, message, packet) {
     }).save(function(err) {
         if(err) {
             throw err
-        } else {
-            if(colNum === 1) console.log("Success 1!!!!")
-            else console.log("Success 2!!!!")
-        }
+        } 
     })
 })
 

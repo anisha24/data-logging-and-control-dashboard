@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   user = "";
   username = "";
 
-
   constructor(private router: Router,
     private regservice: RegisteruserService,
     private navService: NavService) {

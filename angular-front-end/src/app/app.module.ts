@@ -25,6 +25,10 @@ import { VisualisationComponent } from './visualisation/visualisation.component'
 import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { NgxGaugeModule } from 'ngx-gauge';
+
+import { SocketService } from './socket.service';
+import { NavService } from './nav.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +42,7 @@ import { NgxGaugeModule } from 'ngx-gauge';
     DashboardViewComponent,
     VisualisationComponent,
     ConfgaccountComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,13 @@ import { NgxGaugeModule } from 'ngx-gauge';
     NgxGaugeModule,
     NgMasonryGridModule,
   ],
- 
-  entryComponents:[ RegSuccessDialogComponent, RegFailureDialogComponent],
-  providers: [ RegisteruserService ],
+
+  entryComponents: [RegSuccessDialogComponent, RegFailureDialogComponent],
+  providers: [
+    RegisteruserService,
+    SocketService,
+    NavService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
