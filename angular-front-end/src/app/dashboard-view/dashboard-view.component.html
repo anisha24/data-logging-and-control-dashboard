@@ -31,7 +31,7 @@
     </mat-grid-tile>
 </mat-grid-list> -->
 
-<ng-masonry-grid [masonryOptions]="{ gutter: 5, originTop: true, isFitWidth: false}" [useAnimation]="false" class="outer">
+<!-- <ng-masonry-grid [masonryOptions]="{ gutter: 5, originTop: true, isFitWidth: false}" [useAnimation]="false" class="outer">
     <ng-masonry-grid-item>
         <mat-card class="dashboard-card">
             <mat-card-header>
@@ -39,4 +39,18 @@
             </mat-card-header>
         </mat-card>
     </ng-masonry-grid-item>
-</ng-masonry-grid> 
+</ng-masonry-grid>  -->
+<div class="outer">
+    <div class="container-fluid">
+        <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true">
+            <div ngxMasonryItem class="masonry-item" *ngFor="let item of masonryItems">
+                <mat-card class="dashboard-card">
+                    <mat-card-header>
+                        <mat-card-title class="dashboard-card-title">{{ item.title }}</mat-card-title>
+                    </mat-card-header>
+                    
+                </mat-card>
+            </div>
+        </ngx-masonry>
+    </div>
+</div>

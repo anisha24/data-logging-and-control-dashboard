@@ -28,6 +28,7 @@ import { NgxGaugeModule } from 'ngx-gauge';
 
 import { SocketService } from './socket.service';
 import { NavService } from './nav.service';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { NavService } from './nav.service';
     MatCardModule,
     NgxGaugeModule,
     NgMasonryGridModule,
+    NgxMasonryModule
   ],
 
   entryComponents: [RegSuccessDialogComponent, RegFailureDialogComponent],

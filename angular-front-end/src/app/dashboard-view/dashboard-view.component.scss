@@ -77,8 +77,10 @@ mat-toolbar {
 }
 
 .dashboard-card {
-  height: 388px;
-  width: 290px;
+  width: 250px;
+  height: 140px;
+  padding:10px;
+  border: 1px solid black;
 }
 
 .dashboard-card-content {
@@ -96,16 +98,11 @@ mat-toolbar {
 .outer {
   margin-top: 30px;
   margin-left: 60px;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 mat-grid-tile {
   background-color: #279fa3;
-}
-
-ng-masonry-grid {
-  display: flex;
-  flex-flow: column wrap;
 }
 
 .masonry-item { width: 200px; }
