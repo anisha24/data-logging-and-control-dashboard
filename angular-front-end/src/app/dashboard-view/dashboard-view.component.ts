@@ -43,7 +43,7 @@ export class DashboardViewComponent implements OnInit {
     gutter: 20,
     originLeft: true,
     fitWidth: true,
-    columnWidth: 250,
+    columnWidth: 200,
     initLayout: true,
     //fitHeight: true
   };

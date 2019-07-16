@@ -17,7 +17,8 @@ mat-sidenav {
     text-decoration: none;
     font-size: 15px;
     color: white;
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
   }
   a:hover {
     color: #f1f1f1;
@@ -52,9 +53,11 @@ mat-toolbar {
         float: left;
         margin-left: 1200%;
 
-        a {
-          padding: 1.5em;
-          text-transform: uppercase;
+        button:hover {
+          border-radius: 2px;
+          -webkit-transform: scale(1.025);
+          -ms-transform: scale(1.025);
+          transform: scale(1.025);
         }
       }
     }
