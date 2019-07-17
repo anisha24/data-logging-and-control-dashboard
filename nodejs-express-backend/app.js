@@ -22,6 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(cors({origin: '*'}));
+
 
 //to setup mongoose to connect to mongoDB
 var mongoose = require('mongoose')

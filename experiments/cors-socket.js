@@ -29,7 +29,12 @@ const io = socket(server);
 io.sockets.on('connection', (socket) => {
     console.log(`new connection id: ${socket.id}`);
     sendData(socket);
+    socket.on('disconnect', (socket) => {
+        console.log(`connection id: ${socket.id} disconnected`);
+    })
 })
+
+
 
 function sendData(socket) {
     socket.emit('data1',"Hello");

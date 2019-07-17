@@ -19,13 +19,13 @@ def on_connect(client, userdata, flags, rc):
  
 Connected = False   
  
-broker_address= "m24.cloudmqtt.com"
-port = 10174
-user = "zwfxzaip"
-password = "8rQqi99icKka"
+broker_address= "localhost"
+port = 1883
+#user = "zwfxzaip"
+#password = "8rQqi99icKka"
  
 client = mqttClient.Client("NodeData")               
-client.username_pw_set(user, password=password)    
+#client.username_pw_set(user, password=password)    
 client.on_connect= on_connect                      
 client.connect(broker_address, port=port)          
  
