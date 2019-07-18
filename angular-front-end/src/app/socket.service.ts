@@ -28,7 +28,9 @@ export class SocketService {
 
   socketConnect() {
     console.log('inside');
+    socket.connect();
     socket.on('initConnect', function (res) {
+      console.log('inside initConnect')
       this.connID = res;
       this.uname = this.getUserName;
       console.log(this.connID, this.uname)
@@ -50,7 +52,8 @@ export class SocketService {
   
 
   socketDisconnect() {
-    socket.emit('wantToDisconnect', this.getUserName(), this.connID)
+    //socket.emit('wantToDisconnect', this.getUserName(), this.connID)
     socket.disconnect();
+    console.log('Disconnected');
   }
 }

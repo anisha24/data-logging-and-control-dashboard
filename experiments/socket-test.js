@@ -62,6 +62,11 @@ io.sockets.on('connection', (socket) => {
     socket.on('disconnect', (socket) => {
         console.log(`connection id: ${socket.id} disconnected`);
     })
+
+    socket.on('reconnect', (socket) => {
+        console.log('reconnected');
+        console.log(`with id: ${socket.id}`);
+    })
     
 })
 
