@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { SocketService } from '../socket.service';
 
-const socket = io('http://localhost:3006');
+//const socket = io('http://localhost:3006');
 
 @Component({
   selector: 'app-dashboard-view',
@@ -11,7 +12,7 @@ const socket = io('http://localhost:3006');
 })
 export class DashboardViewComponent implements OnInit {
 
-  socket: SocketIOClient.Socket;
+  //socket: SocketIOClient.Socket;
   masonryItems = [
     { title: 'Node 1' },
     { title: 'Node 2' },
@@ -48,16 +49,30 @@ export class DashboardViewComponent implements OnInit {
     //fitHeight: true
   };
 
-  constructor() {
+  // uname = '';
+  // conid = '';
+
+  constructor(private socketser: SocketService) {
   }
 
   ngOnInit() {
 
-    socket.on('data1', (res) => {
-      console.log(res);
-      console.log("Success!!!");
-    })
-
+    console.log('created');
+    //this.socketser.getData();
+      
+    
+    this.socketser.socketConnect();
+    //  socket.on('data1', (res) => {
+    //   console.log(res);
+    //   console.log("Success!!!");
+    // })
   }
+
+  ngOnDestroy() {
+    console.log('Destroyed');
+    this.socketser.socketDisconnect();
+  }
+
+
 
 }

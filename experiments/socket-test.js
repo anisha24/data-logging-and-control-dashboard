@@ -42,41 +42,56 @@ const server = app.listen(3006, () => {
     console.log('Started in 3006');
 });
 
+var clientStore = {};
+
 const io = socket(server);
 
 io.sockets.on('connection', (socket) => {
     console.log(`new connection id: ${socket.id}`);
-    callData();
+    socket.emit('initConnect', `${socket.id}`);
+    socket.on('storeID', function (data) {
+        var ClientInfo = new Object();
+        ClientInfo.clientUname = data.clientUname;
+        ClientInfo.clientID = socket.id;
+        clientStore.push(ClientInfo);
+    })
+    //callData();
     sendData(socket);
+
+
     socket.on('disconnect', (socket) => {
         console.log(`connection id: ${socket.id} disconnected`);
     })
+    
 })
+
 
 var sendList = [];
 
-function callData() {
+// function callData() {
     
-    var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
-    nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
-        console.log(docs);
-        sendList.push(docs)
-    });
-    console.log(sendList);
-}
+//     var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
+//     nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
+//         console.log(JSON.stringify(docs));
+//         sendList.push(JSON.stringify(docs))
+//     });
+//     console.log(sendList);
+// }
 
 function sendData(socket) {
 
     var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
     nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
-        console.log(docs);
-        sendList.push(docs)
+        //console.log(JSON.stringify(docs));
+        sendList.push(JSON.stringify(docs))
     });
-    console.log(sendList);
+    //console.log(sendList);
 
     socket.emit('data1', sendList);
     sendList=[];
     setTimeout(() => {
         sendData(socket);
-    }, 10000);
+    }, 5000);
+
+
 }
