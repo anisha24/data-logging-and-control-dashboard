@@ -76,43 +76,7 @@ mat-toolbar {
   }
 }
 
-.dashboard-card {
-  //width: 250px;
-  //height: 140px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  //the below css creates a raised box effect
-  //border: 1px solid #77aaff;
-  //box-shadow: -1px 1px #77aaff, -2px 2px #77aaff, -3px 3px #77aaff, -4px 4px #77aaff, -5px 5px #77aaff;
-}
 
-.dashboard-card-content {
-  margin-top: 10px;
-  font-size: 20px;
-  button {
-    background-color: white;
-    font-size: 15px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    background-color: transparent;
-    cursor: pointer;
-    border: 0px;
-  }
-  button:hover {
-    background-color: #f3efef;
-    border-radius: 2px;
-  }
-}
-
-.dashboard-card-title {
-  font-weight: bolder;
-  font-family: "Montserrat";
-  font-size: 17px;
-  text-align: center;
-}
 
 .outer {
   margin-top: 30px;

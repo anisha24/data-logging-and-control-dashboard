@@ -58,6 +58,10 @@ io.sockets.on('connection', (socket) => {
     //callData();
     sendData(socket);
 
+    socket.on('unameID', function(data) {
+        //unam = data1.uname;
+        console.log(data)
+    })
 
     socket.on('disconnect', (socket) => {
         console.log(`connection id: ${socket.id} disconnected`);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { SocketService } from '../socket.service';
+import { RegisteruserService } from '../registeruser.service';
 
 //const socket = io('http://localhost:3006');
 
@@ -12,33 +13,9 @@ import { SocketService } from '../socket.service';
 })
 export class DashboardViewComponent implements OnInit {
 
-  //socket: SocketIOClient.Socket;
-  masonryItems = [
-    { title: 'Node 1' },
-    { title: 'Node 2' },
-    { title: 'Node 3' },
-    { title: 'Node 4' },
-    { title: 'Node 5' },
-    { title: 'Node 6' },
-    { title: 'Node 7' },
-    { title: 'Node 8' },
-    { title: 'Node 9' },
-    { title: 'Node 10' },
-    { title: 'Node 11' },
-    { title: 'Node 12' },
-    { title: 'Node 13' },
-    { title: 'Node 14' },
-    { title: 'Node 15' },
-    { title: 'Node 16' },
-    { title: 'Node 17' },
-    { title: 'Node 18' },
-    { title: 'Node 19' },
-    { title: 'Node 20' },
-    { title: 'Node 21' },
-    { title: 'Node 22' },
-    { title: 'Node 23' },
-    { title: 'Node 24' }
-  ];
+  socket: SocketIOClient.Socket;
+  masonryItems = [];
+  socData=[]
 
   public masonryOptions: NgxMasonryOptions = {
     gutter: 20,
@@ -49,23 +26,36 @@ export class DashboardViewComponent implements OnInit {
     //fitHeight: true
   };
 
-  // uname = '';
+  uname = '';
   // conid = '';
+  connection
 
-  constructor(private socketser: SocketService) {
+  constructor(private socketser: SocketService,
+    private reguser: RegisteruserService) {
+    console.log('Executed')
+
   }
 
   ngOnInit() {
 
     console.log('created');
     //this.socketser.getData();
-      
-    
-    this.socketser.socketConnect();
-    //  socket.on('data1', (res) => {
-    //   console.log(res);
-    //   console.log("Success!!!");
-    // })
+
+    this.reguser.getUserName().subscribe(
+      data => { this.uname = data.toString(); console.log(data, "con1"); console.log(this.uname, "con2"); },
+      err => { }
+    );
+
+    this.connection = this.socketser.socketConnect().subscribe(socketData => {
+      this.socData.push(socketData);
+      console.log(this.socData)
+    console.log(this.uname, "inside init")
+    })
+
+    //this.socketser.socketConnect(this.uname);
+
+    console.log(this.socData)
+
   }
 
   ngOnDestroy() {
