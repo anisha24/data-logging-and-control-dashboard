@@ -37,46 +37,55 @@ mat-toolbar {
   b {
     margin-left: 0;
   }
-  #custom-search-input {
-    border: solid 1px #e4e4e4;
-    border-radius: 6px;
-    background-color: #fff;
-    width: 450px;
-    align-self: center;
-    text-align: center;
-  }
+}
 
-  #custom-search-input input {
-    border: 0;
-    box-shadow: none;
-    height: 10px;
-    vertical-align: center;
-    height: 40px;
-    font-size: 18px;
-  }
+.dashboard-card {
+  width: 270px;
+  //height: 140px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  //the below css creates a raised box effect
+  //border: 1px solid #77aaff;
+  //box-shadow: -1px 1px #77aaff, -2px 2px #77aaff, -3px 3px #77aaff, -4px 4px #77aaff, -5px 5px #77aaff;
+}
 
-  #custom-search-input button {
-    margin: 2px 0 0 0;
-    background: none;
-    box-shadow: none;
-    border: 0;
-    color: #666666;
-    padding: 0 8px 0 10px;
-    border-left: solid 1px #ccc;
+.dashboard-card-content {
+  margin-top: 10px;
+  font-size: 17px;
+  button {
+    background-color: white;
+    font-size: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0px;
+    margin-left: 26%;
+    font-weight: bold;
+    font-size: 17px;
   }
-
-  #custom-search-input button:hover {
-    border: 0;
-    box-shadow: none;
-    border-left: solid 1px #ccc;
-  }
-
-  #custom-search-input .glyphicon-search {
-    font-size: 23px;
+  button:hover {
+    background-color: #f3efef;
+    border-radius: 10px;
+    color: #1a7275;
   }
 }
 
+.dashboard-card-title {
+  font-weight: bolder;
+  font-family: "Montserrat";
+  font-size: 20px;
+  text-align: center;
+  color: rgb(68, 22, 11);
+  padding-left: 65px;
+}
 
+td {
+  padding: 3px;
+}
 
 .outer {
   margin-top: 30px;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { RegisteruserService } from './registeruser.service';
-import { Subject } from 'rxjs/Subject';
+//import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 const socket = io('http://localhost:3006');

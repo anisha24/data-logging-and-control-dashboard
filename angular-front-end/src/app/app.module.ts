@@ -29,6 +29,8 @@ import { NgxGaugeModule } from 'ngx-gauge';
 import { SocketService } from './socket.service';
 import { NavService } from './nav.service';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { ConfigureComponent } from './configure/configure.component';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
     DashboardViewComponent,
     VisualisationComponent,
     ConfgaccountComponent,
+    ConfigureComponent
 
   ],
   imports: [
@@ -65,10 +68,12 @@ import { NgxMasonryModule } from 'ngx-masonry';
     MatCardModule,
     NgxGaugeModule,
     NgMasonryGridModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 
-  entryComponents: [RegSuccessDialogComponent, RegFailureDialogComponent],
+  entryComponents: [RegSuccessDialogComponent, RegFailureDialogComponent, ConfigureComponent],
   providers: [
     RegisteruserService,
     SocketService,

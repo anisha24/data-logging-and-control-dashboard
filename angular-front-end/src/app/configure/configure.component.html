@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>CONFIGURE NODE</h1>
+<form>
+    <table>
+        <tr>
+            <td align="right">
+                DURATION :
+            </td>
+            <td>
+                <input type="text"><br>
+            </td>
+            <td>
+                sec
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center" style="font-weight: bold">
+                THRESHOLD
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                TEMPERATURE :
+            </td>
+            <td>
+                <input type="text"><br>
+            </td>
+            <td>
+                &#176;C
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                HUMIDITY :
+            </td>
+            <td>
+                <input type="text"><br>
+            </td>
+            <td>
+                %
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                PRESSURE :
+            </td>
+            <td>
+                <input type="text"><br>
+            </td>
+            <td>
+                atm
+            </td>
+        </tr>
+    </table>
+    <button mat-button class="submitButton">SUBMIT</button>
+    <button mat-button class="cancelButton" [mat-dialog-close]="true">CANCEL</button>
+</form>

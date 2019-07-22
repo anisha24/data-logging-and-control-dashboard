@@ -90,9 +90,14 @@ var sendList = [];
 function sendData(socket) {
 
     var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
+    sendList.push(1)
     nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
         //console.log(JSON.stringify(docs));
-        sendList.push(JSON.stringify(docs))
+        sendList.push(docs)
+    });
+    var nodeData = mongoose.model('nodeData','2', nodeDataSchema);
+    nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
+        sendList.push(docs)
     });
     //console.log(sendList);
 

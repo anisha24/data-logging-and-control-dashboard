@@ -44,13 +44,40 @@
 <div class="outer">
     <div class="container-fluid">
         <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true">
-            <div ngxMasonryItem class="masonry-item" *ngFor="let item of masonryItems">
-            <mat-card class="dashboard-card">
+            <div ngxMasonryItem class="masonry-item" *ngFor="let data of masonryItems">
+                <mat-card class="dashboard-card">
                     <mat-card-header>
-                        <mat-card-title class="dashboard-card-title">{{ item.title }}</mat-card-title>
+                        <mat-card-title class="dashboard-card-title"> Node {{ data.nodeID }}</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="dashboard-card-content">
-                        <button>CONFIGURE</button>
+                        <table>
+                            <tr>
+                                <td align="right" style="color: rgb(7, 0, 100); font-weight: bold">
+                                    TEMPERATURE :<span>&nbsp;</span>
+                                </td>
+                                <td>
+                                    <b><span>&nbsp;</span>{{data.TEMPERATURE}}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" style="color: rgb(7, 0, 100); font-weight: bold">
+                                    HUMIDITY :<span>&nbsp;</span>
+                                </td>
+                                <td>
+                                    <b><span>&nbsp;</span>{{data.HUMIDITY}}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" style="color: rgb(7, 0, 100); font-weight: bold">
+                                    PRESSURE :<span>&nbsp;</span>
+                                </td>
+                                <td>
+                                    <b><span>&nbsp;</span>{{data.PRESSURE}}</b>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <button (click)="openConfig()">CONFIGURE</button>
                     </mat-card-content>
                 </mat-card>
             </div>
