@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+ NodeIDdata: String;
+}
+
 
 @Component({
   selector: 'app-configure',
@@ -7,9 +13,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigureComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit() {
+  }
+
+  submitControl() {
+    console.log(this.data.NodeIDdata," The successful Flag! ")
   }
 
 }

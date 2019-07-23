@@ -50,7 +50,7 @@ export class DashboardViewComponent implements OnInit {
 
     console.log('created');
     //this.socketser.getData();
-    this.masonryItems = []
+    //this.masonryItems = []
     this.reguser.getUserName().subscribe(
       data => { this.uname = data.toString(); console.log(data, "con1"); console.log(this.uname, "con2"); },
       err => { }
@@ -82,12 +82,13 @@ export class DashboardViewComponent implements OnInit {
 
   }
 
-  openConfig(): void {
+  openConfig(nodeID: String): void {
 
 
-     let dialogRef = this.dialog.open(ConfigureComponent, //{
-    //   data: { message: "Registration Succes" }
-    //}
+    console.log(nodeID,"this one always")
+     let dialogRef = this.dialog.open(ConfigureComponent, {
+       data: { NodeIDdata: nodeID }
+    }
     );
 
     dialogRef.afterClosed().subscribe(result => {

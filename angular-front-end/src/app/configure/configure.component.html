@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>CONFIGURE NODE</h1>
+<h1 mat-dialog-title>CONFIGURE NODE {{data.NodeIDdata}}</h1>
 <form>
     <table>
         <tr>
@@ -51,6 +51,6 @@
             </td>
         </tr>
     </table>
-    <button mat-button class="submitButton">SUBMIT</button>
+    <button mat-button class="submitButton" (click)='submitControl()'>SUBMIT</button>
     <button mat-button class="cancelButton" [mat-dialog-close]="true">CANCEL</button>
 </form>

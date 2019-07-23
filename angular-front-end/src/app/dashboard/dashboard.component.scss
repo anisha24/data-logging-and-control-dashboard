@@ -22,15 +22,17 @@ mat-sidenav {
   }
   a:hover {
     color: #f1f1f1;
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
+    -webkit-transform: scale(1.025);
+    -ms-transform: scale(1.025);
+    transform: scale(1.025);
+    overflow-x: visible;
   }
   .active {
     background-color: #1e8ebe;
     border-right-width: 10px;
     border-right-color: #1fe44a;
     margin-right: 5px;
+    overflow-x: visible;
     border-right-style: solid;
   }
 }
