@@ -57,7 +57,9 @@ export class DashboardViewComponent implements OnInit {
     );
 
     this.connection = this.socketser.socketConnect().subscribe(socketData => {
-      this.masonryItems = []
+      while(this.masonryItems.length !== 0) {
+        this.masonryItems.pop();
+      }
       console.log(this.masonryItems, 'Initial Socket entry')
       this.socData = [socketData];
       console.log(socketData)
@@ -70,14 +72,15 @@ export class DashboardViewComponent implements OnInit {
         this.masonryItems.push(this.socData[0][j])
       }
       console.log(this.masonryItems, 'Final Socket entry')
-      this.socData = [];
+      while(this.socData.length !== 0) {
+        this.socData.pop();
+      }
       
-      //console.log(this.uname, "inside init")
+      console.log(this.uname, "inside init")
     })
 
 
     //this.socketser.socketConnect(this.uname);
-    this.masonryItems = []
     console.log(this.socData)
 
   }

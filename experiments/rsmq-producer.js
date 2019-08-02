@@ -51,6 +51,8 @@ client.on('message', function (topic, message, packet) {
     redisClient.lpush('inNodeData', message, function (err, reply) {
         if (err) {
             console.log(err);
+        } else {
+            console.log(message.toString())
         }
     })
 
