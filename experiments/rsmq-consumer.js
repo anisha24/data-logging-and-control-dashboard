@@ -15,10 +15,11 @@ subscriber.subscribe('newData');
 var redisClient = redis.createClient();
 redisClient.on('connect', function () {
     console.log('Redis server connected...');
+    redisClient.flushall();
 })
 
 mongoose.connect('mongodb://localhost:27017/edge-net-dashboard', { useNewUrlParser: true, useCreateIndex: true }).then(function () {
-    console.log("Connected to MongoDB");
+    console.log("Connected to MongoDB...");
 })
 
 var SchemaTypes = mongoose.Schema.Types;
@@ -44,32 +45,35 @@ subscriber.on('message', function (channel, message) {
                 console.log(err);
             } else {
 
-                var mainList = reply.toString().split(';');
-                var mainListLength = mainList.length;
-                for (i = 0; i < mainListLength; i++) {
+                if (reply === null) {
+                } else {
+                    var mainList = reply.toString().split(';');
+                    var mainListLength = mainList.length;
+                    for (i = 1; i < mainListLength; i++) {
 
-                    var collData = mainList[i].toString().split(',');
-                    var collName = collData[0];
-                    var nodeData = mongoose.model('nodeData', collName, nodeDataSchema)
-                    var colNum = parseInt(collData[0])
-                    var insTemp = parseFloat(collData[1])
-                    var insHum = parseFloat(collData[2])
-                    var insPres = parseFloat(collData[3])
-                    var insDate = Date(collData[4])
+                        var collData = mainList[i].toString().split(',');
+                        var collName = collData[0];
+                        var nodeData = mongoose.model('nodeData', collName, nodeDataSchema)
+                        var colNum = parseInt(collData[0])
+                        var insTemp = parseFloat(collData[1])
+                        var insHum = parseFloat(collData[2])
+                        var insPres = parseFloat(collData[3])
+                        var insDate = Date(collData[4])
 
-                    var ins = nodeData({
-                        nodeID: colNum,
-                        TEMPERATURE: insTemp,
-                        HUMIDITY: insHum,
-                        PRESSURE: insPres,
-                        time: insDate
-                    }).save(function (err) {
-                        if (err) {
-                            throw err
-                        } else {
-                            console.log("Data Saved!!!")
-                        }
-                    })
+                        var ins = nodeData({
+                            nodeID: colNum,
+                            TEMPERATURE: insTemp,
+                            HUMIDITY: insHum,
+                            PRESSURE: insPres,
+                            time: insDate
+                        }).save(function (err) {
+                            if (err) {
+                                throw err
+                            } else {
+                                console.log("Data Saved!!!")
+                            }
+                        })
+                    }
                 }
             }
         })

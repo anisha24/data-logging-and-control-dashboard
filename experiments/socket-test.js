@@ -13,11 +13,11 @@ mongoose.connect('mongodb://localhost:27017/edge-net-dashboard', { useNewUrlPars
 var SchemaTypes = mongoose.Schema.Types;
 
 var nodeDataSchema = new mongoose.Schema({
-    nodeID:  Number,
-    TEMPERATURE:  SchemaTypes.Double,
-    HUMIDITY:  SchemaTypes.Double,
-    PRESSURE:  SchemaTypes.Double,
-    time:  Date
+    nodeID: Number,
+    TEMPERATURE: SchemaTypes.Double,
+    HUMIDITY: SchemaTypes.Double,
+    PRESSURE: SchemaTypes.Double,
+    time: Date
 });
 
 var nodeData = mongoose.model('nodeData', nodeDataSchema);
@@ -46,39 +46,76 @@ var clientStore = {};
 
 const io = socket(server);
 
+var socketRooms = [];
+
 io.sockets.on('connection', (socket) => {
     console.log(`new connection id: ${socket.id}`);
     socket.emit('initConnect', `${socket.id}`);
     socket.on('storeID', function (data) {
-        var ClientInfo = new Object();
-        ClientInfo.clientUname = data.clientUname;
-        ClientInfo.clientID = socket.id;
-        clientStore.push(ClientInfo);
+        sepData = data.toString().split(';');
+        console.log(sepData, "the sent data")
+        console.log(sepData[0])
+        if (sepData[0] !== null) {
+            socket.join(sepData[0]);
+            sepFlag = false;
+            for (i = 0; i < socketRooms.length; i++) {
+                if (socketRooms[i] == sepData[0]) {
+                    console.log("Data present!!!")
+                    sepFlag = true;
+                    break;
+                }
+            }
+            if (sepFlag == false) {
+                console.log("data not present!!!")
+                socketRooms.push(sepData[0])
+            }
+            sepFlag = false;
+        }
+        console.log(socketRooms);
+        console.log(socket.adapter.rooms)
     })
+
     //callData();
     sendData(socket);
 
-    socket.on('unameID', function(data) {
+    socket.on('unameID', function (data) {
         //unam = data1.uname;
         console.log(data)
     })
 
-    socket.on('disconnect', (socket) => {
-        console.log(`connection id: ${socket.id} disconnected`);
+    socket.on('disconnectReq', function (data) {
+        socDataReqDis = data.toString().split(';');
+        delIndex = socketRooms.indexOf(socDataReqDis[0]);
+        console.log(delIndex);
+        console.log("Disconnected connection for user \'" + socDataReqDis[0] + "\' with connection ID " + socDataReqDis[1])
+        var socketRoomsDup = []
+        for (var i = 0; i < socketRooms.length; i++) {
+            if (i == delIndex) {
+                continue;
+            } else {
+                socketRoomsDup.push(socketRooms[i])
+            }
+        }
+        socketRooms = socketRoomsDup
+        socketRoomsDup = []
+        socket.on('disconnect', function (data) {
+            console.log("Disconnected!!!")
+            console.log(socketRooms)
+        })
     })
 
     socket.on('reconnect', (socket) => {
         console.log('reconnected');
         console.log(`with id: ${socket.id}`);
     })
-    
+
 })
 
 
 var sendList = [];
 
 // function callData() {
-    
+
 //     var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
 //     nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
 //         console.log(JSON.stringify(docs));
@@ -89,20 +126,26 @@ var sendList = [];
 
 function sendData(socket) {
 
-    var nodeData = mongoose.model('nodeData','1', nodeDataSchema);
+    // while(sendList.length !== 0) {
+    //     sendList.pop();
+    // }
+
+    var nodeData = mongoose.model('nodeData', '1', nodeDataSchema);
     sendList.push(1)
-    nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
+    nodeData.findOne({}).sort({ time: -1 }).exec(function (err, docs) {
         //console.log(JSON.stringify(docs));
         sendList.push(docs)
     });
-    var nodeData = mongoose.model('nodeData','2', nodeDataSchema);
-    nodeData.findOne({}).sort({time: -1}).exec( function (err, docs) {
+    var nodeData = mongoose.model('nodeData', '2', nodeDataSchema);
+    nodeData.findOne({}).sort({ time: -1 }).exec(function (err, docs) {
         sendList.push(docs)
     });
     //console.log(sendList);
 
     socket.emit('data1', sendList);
-    sendList=[];
+    while (sendList.length !== 0) {
+        sendList.pop();
+    }
     setTimeout(() => {
         sendData(socket);
     }, 5000);

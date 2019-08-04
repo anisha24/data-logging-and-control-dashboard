@@ -31,6 +31,7 @@ import { NavService } from './nav.service';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { ConfigureComponent } from './configure/configure.component';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { DashboardSearchFilterPipe } from './dashboard-search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     DashboardViewComponent,
     VisualisationComponent,
     ConfgaccountComponent,
-    ConfigureComponent
+    ConfigureComponent,
+    DashboardSearchFilterPipe
 
   ],
   imports: [

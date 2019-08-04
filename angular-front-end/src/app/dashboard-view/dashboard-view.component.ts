@@ -40,10 +40,8 @@ export class DashboardViewComponent implements OnInit {
 
   constructor(private socketser: SocketService,
     private reguser: RegisteruserService,
-    public dialog: MatDialog
-    ) {
-    console.log('Executed')
-
+    public dialog: MatDialog) {
+      console.log('Executed')
   }
 
   ngOnInit() {
@@ -51,13 +49,10 @@ export class DashboardViewComponent implements OnInit {
     console.log('created');
     //this.socketser.getData();
     //this.masonryItems = []
-    this.reguser.getUserName().subscribe(
-      data => { this.uname = data.toString(); console.log(data, "con1"); console.log(this.uname, "con2"); },
-      err => { }
-    );
 
+    this.uname = localStorage.getItem('username');
     this.connection = this.socketser.socketConnect().subscribe(socketData => {
-      while(this.masonryItems.length !== 0) {
+      while (this.masonryItems.length !== 0) {
         this.masonryItems.pop();
       }
       console.log(this.masonryItems, 'Initial Socket entry')
@@ -72,10 +67,10 @@ export class DashboardViewComponent implements OnInit {
         this.masonryItems.push(this.socData[0][j])
       }
       console.log(this.masonryItems, 'Final Socket entry')
-      while(this.socData.length !== 0) {
+      while (this.socData.length !== 0) {
         this.socData.pop();
       }
-      
+
       console.log(this.uname, "inside init")
     })
 
@@ -85,12 +80,13 @@ export class DashboardViewComponent implements OnInit {
 
   }
 
+
   openConfig(nodeID: String): void {
 
 
-    console.log(nodeID,"this one always")
-     let dialogRef = this.dialog.open(ConfigureComponent, {
-       data: { NodeIDdata: nodeID }
+    console.log(nodeID, "this one always")
+    let dialogRef = this.dialog.open(ConfigureComponent, {
+      data: { NodeIDdata: nodeID }
     }
     );
 

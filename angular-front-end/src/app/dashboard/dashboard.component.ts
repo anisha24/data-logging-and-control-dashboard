@@ -19,14 +19,14 @@ export class DashboardComponent implements OnInit {
     private navService: NavService) {
     this.regservice.getUserName()
       .subscribe(
-        data => this.user = data.toString(),
+        data => { this.user = data.toString(); localStorage.setItem('username', data.toString());},
         error => this.router.navigate(['/login']),
       )
-
 
   }
 
   ngOnInit() {
+
   }
 
   logout() {

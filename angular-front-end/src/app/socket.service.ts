@@ -14,21 +14,30 @@ export class SocketService {
 
   connID: String;
   uname: String;
+  sendUnameID: String;
   sentResp: any;
   private _http: HttpClient;
   private socket: SocketIOClient.Socket;
   reguser: RegisteruserService;
 
-  constructor() {
-    
-
-  }
+  constructor() {}
 
   socketConnect() {
 
-    let observable = new Observable( observer => {
+    let observable = new Observable(observer => {
+      this.uname = localStorage.getItem('username');
       socket.connect();
-      socket.on('data1', function( data) {
+      socket.on('initConnect', function (data) {
+        this.uname = localStorage.getItem('username')
+        this.connID = data.toString();
+        localStorage.setItem('connectionID', this.connID)
+        console.log(this.connID,"the received connID")
+        this.sendUnameID = this.uname + ';' + this.connID;
+        console.log(this.sendUnameID,"the sent unameID")
+        socket.emit('storeID', this.sendUnameID)
+      })
+
+      socket.on('data1', function (data) {
         observer.next(data);
       });
 
@@ -58,7 +67,10 @@ export class SocketService {
 
 
   socketDisconnect() {
+    this.sendUnameID = this.uname + ';' + localStorage.getItem('connectionID')
+    socket.emit('disconnectReq', this.sendUnameID);
     socket.disconnect();
+    localStorage.removeItem('connectionID')
     console.log('Disconnected');
   }
 }
