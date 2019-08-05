@@ -38,6 +38,8 @@ var nodeNumSchema = new mongoose.Schema({
     number: Number
 });
 
+var nodeNum = mongoose.model('nodeNum', nodNumSchema);
+
 
 subscriber.on('message', function (channel, message) {
 
@@ -52,6 +54,9 @@ subscriber.on('message', function (channel, message) {
                 if (reply === null) {
                 } else {
                     var mainList = reply.toString().split(';');
+                    var insNum = nodeNum({
+                        number: parseInt(mainList[0])
+                    })
                     var mainListLength = mainList.length;
                     for (i = 1; i < mainListLength; i++) {
 
