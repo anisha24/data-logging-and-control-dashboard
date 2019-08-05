@@ -19,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material';
 import { RegSuccessDialogComponent } from './reg-success-dialog/reg-success-dialog.component';
 import { RegFailureDialogComponent } from './reg-failure-dialog/reg-failure-dialog.component';
-import { LoginBannerComponent } from './login-banner/login-banner.component';
 import { DashboardViewComponent } from './dashboard-view/dashboard-view.component';
 import { VisualisationComponent } from './visualisation/visualisation.component';
 import { ConfgaccountComponent } from './confgaccount/confgaccount.component';
@@ -42,7 +41,6 @@ import { DashboardSearchFilterPipe } from './dashboard-search-filter.pipe';
     RegisterComponent,
     RegSuccessDialogComponent,
     RegFailureDialogComponent,
-    LoginBannerComponent,
     DashboardViewComponent,
     VisualisationComponent,
     ConfgaccountComponent,

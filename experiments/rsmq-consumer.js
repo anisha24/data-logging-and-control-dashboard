@@ -34,6 +34,10 @@ var nodeDataSchema = new mongoose.Schema({
 
 var nodeData = mongoose.model('nodeData', nodeDataSchema);
 
+var nodeNumSchema = new mongoose.Schema({
+    number: Number
+});
+
 
 subscriber.on('message', function (channel, message) {
 

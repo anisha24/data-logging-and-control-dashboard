@@ -6,6 +6,8 @@ from timeloop import Timeloop
 from datetime import timedelta
 from datetime import datetime
 
+nodeNumber = str(2)
+
 def on_connect(client, userdata, flags, rc):
  
     if rc == 0:
@@ -38,12 +40,14 @@ try:
     @tl.job(interval=timedelta(seconds=5))
     def sample_job_every_10s():
 
+        val_list = nodeNumber
+
         # for node 1
         temp = str(round(random.uniform(15,30),3))
         humidity = str(round(random.uniform(20,50),3))
         pressure = str(round(random.uniform(0.9,1.2),3))
         now = str(datetime.now())
-        val_list = '1' + ',' + temp + ',' + humidity + ',' + pressure + ',' + now
+        val_list = val_list + ';' + '1' + ',' + temp + ',' + humidity + ',' + pressure + ',' + now
         publish_list = str(val_list)
 
         # for node 2
