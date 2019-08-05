@@ -32,6 +32,8 @@ import { ConfigureComponent } from './configure/configure.component';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { DashboardSearchFilterPipe } from './dashboard-search-filter.pipe';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +72,8 @@ import { DashboardSearchFilterPipe } from './dashboard-search-filter.pipe';
     NgMasonryGridModule,
     NgxMasonryModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    Ng2SearchPipeModule
   ],
 
   entryComponents: [RegSuccessDialogComponent, RegFailureDialogComponent, ConfigureComponent],

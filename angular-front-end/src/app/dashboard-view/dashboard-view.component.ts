@@ -34,6 +34,8 @@ export class DashboardViewComponent implements OnInit {
     //fitHeight: true
   };
 
+  searchText;
+
   uname = '';
   // conid = '';
   connection
